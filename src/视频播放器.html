@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频播放器</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: whitesmoke;
+        }
+        video {
+            width: 800px;
+            height: 450px;
+        }
+    </style>
+</head>
+<body>
+
+<video id="videoPlayer" controls>
+    <source src="" id="videoSource" type="video/mp4">
+</video>
+<input type="file" accept="video/*" id="fileInput">
+
+<script>
+    const fileInput = document.getElementById('fileInput');
+    const videoPlayer = document.getElementById('videoPlayer');
+    const videoSource = document.getElementById('videoSource');
+
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const url = URL.createObjectURL(file);
+            videoSource.src = url;
+            videoPlayer.load();
+        }
+    });
+</script>
+
+</body>
+</html>
